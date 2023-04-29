@@ -12,7 +12,13 @@ const PORT = 3000;
 //hold data
 let inputRequest = '';
 let derivedData = '';
+let dataHistory = [{one: 'Consectetur labore voluptate mollit ut.'}, 
+    {two: 'Veniam cillum sint fugiat occaecat aute mollit nulla.'}, 
+    {three: 'Cupidatat magna amet id cillum voluptate incididunt qui deserunt ex.'}, 
+    {four: 'Do ad reprehenderit elit duis tempor Lorem cupidatat.'}, 
+    {five: 'Mollit Lorem occaecat ad veniam cupidatat.'}];
 
+let stringified = JSON.stringify(dataHistory);
 
 app.get('/', (req, res) => {
     res.render('index.ejs', {inputBox: 'Test'});
@@ -26,14 +32,18 @@ app.post('/', (req, res) => {
     .then(response => response.json())
     .then(data => {
         derivedData = data.choices[0].text;
-        res.render('index', {inputBox: derivedData});
+        dataHistory.push(derivedData);
+        res.render('index', {inputBox: derivedData, inquiries: stringified});
     }).catch(err => {
         console.log(err);
         console.log('BAD RESPONSE');
     })
 })
 
-app.listen(PORT);
+app.listen(PORT, (req, res) => {
+    console.log(`Listening on port ${PORT}`);
+})
+
 
 function getPrompt(prompt) {
     const requestOptions = {
