@@ -7,7 +7,7 @@ app.use('/public', express.static('public'));
 
 app.set('view engine', 'ejs');
 
-const port = 3000;
+const PORT = 3000;
 
 //hold data
 let inputRequest = '';
@@ -18,11 +18,6 @@ app.get('/', (req, res) => {
     res.render('index.ejs', {inputBox: 'Test'});
 })
 
-app.listen(port, () => {
-    //console.log(process.env.OPENAI_API_KEY)
-    console.log(`Example app listening on port ${port}`);
-})
-
 
 app.post('/', (req, res) => {
     inputRequest = req.body.inputBox;
@@ -31,15 +26,14 @@ app.post('/', (req, res) => {
     .then(response => response.json())
     .then(data => {
         derivedData = data.choices[0].text;
-        console.log(derivedData);
         res.render('index', {inputBox: derivedData});
     }).catch(err => {
         console.log(err);
-        derivedData = err;
         console.log('BAD RESPONSE');
     })
 })
 
+app.listen(PORT);
 
 function getPrompt(prompt) {
     const requestOptions = {
