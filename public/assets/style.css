@@ -1,0 +1,41 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.leftContainer {
+    width: 60%;
+    height: 100%;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+#inputBox {
+    width: 1000px;
+    height: 500px;
+}
+
+#textP {
+    width: 1000px;
+    height: auto;
+}
+
+#submitBtn {
+    width: 1000px;
+    height: 30px;
+}
+
+#rightContainer {
+    width: 30%;
+    height: 100%;
+    border: 1px solid black;
+}
