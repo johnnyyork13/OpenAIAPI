@@ -36,7 +36,7 @@ app.post('/', (req, res) => {
         res.render('index', {inputBox: derivedData, inquiries: stringified});
     }).catch(err => {
         console.log(err);
-        console.log('BAD RESPONSE');
+        console.log('Out of tokens!');
     })
 })
 
@@ -53,7 +53,7 @@ function getPrompt(prompt) {
             'Authorization': 'Bearer ' + String(process.env.OPENAI_API_KEY),
         },
         body: JSON.stringify({
-            'prompt': `Fix the following code and add comments on what was fixed: ${prompt}`,
+            'prompt': `${prompt}`,
             //'prompt': prompt,
             'temperature': 0.8,
             'max_tokens': 800,
