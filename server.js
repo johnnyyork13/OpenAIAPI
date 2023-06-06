@@ -12,11 +12,7 @@ const PORT = 3000;
 //hold data
 let inputRequest = '';
 let derivedData = '';
-let dataHistory = [{one: 'Consectetur labore voluptate mollit ut.'}, 
-    {two: 'Veniam cillum sint fugiat occaecat aute mollit nulla.'}, 
-    {three: 'Cupidatat magna amet id cillum voluptate incididunt qui deserunt ex.'}, 
-    {four: 'Do ad reprehenderit elit duis tempor Lorem cupidatat.'}, 
-    {five: 'Mollit Lorem occaecat ad veniam cupidatat.'}];
+let dataHistory = [];
 
 let stringified = JSON.stringify(dataHistory);
 
@@ -32,8 +28,9 @@ app.post('/', (req, res) => {
     .then(response => response.json())
     .then(data => {
         derivedData = data.choices[0].text;
-        dataHistory.push(derivedData);
-        res.render('index', {inputBox: derivedData, inquiries: stringified});
+        dataHistory.push(inputRequest);
+        //stringified = JSON.stringify(dataHistory);
+        res.render('index', {inputBox: derivedData, inquiries: dataHistory});
     }).catch(err => {
         console.log(err);
         console.log('Out of tokens!');
