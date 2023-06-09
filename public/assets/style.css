@@ -59,6 +59,10 @@ h1 {
 }
 
 #rightContainer {
+    margin-top: 30px;
     width: 30%;
     height: 70%;
+    border: 2px solid var(--light);
+    padding: 20px;
+    text-align: center;
 }
